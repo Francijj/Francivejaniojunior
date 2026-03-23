@@ -1,0 +1,52 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #fff;
+    color: #000;
+}
+
+/* MENU */
+header {
+    background: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* SEÇÕES */
+section {
+    padding: 80px 20px;
+    min-height: 100vh;
+}
+
+/* FORM */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 250px;
+}
+
+/* DARK MODE */
+.dark {
+    background: #111;
+    color: #fff;
+}
