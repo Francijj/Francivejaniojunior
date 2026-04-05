@@ -1,25 +1,16 @@
-// VALIDAÇÃO DO FORMULÁRIO E ENVIO PARA O SERVIDOR
 document.getElementById("formulario").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    let nome = document.getElementById("nome").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let mensagem = document.getElementById("mensagem").value.trim();
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const mensagem = document.getElementById("mensagem").value;
 
-    // validar campos vazios
     if(nome === "" || email === "" || mensagem === ""){
         alert("Preencha todos os campos!");
         return;
     }
 
-    // validar email
-    if(!email.includes("@") || !email.includes(".")){
-        alert("E-mail inválido!");
-        return;
-    }
-
-    // enviar dados para o servidor
-    fetch("/salvar", {
+    fetch("http://127.0.0.1:5000/salvar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -30,21 +21,13 @@ document.getElementById("formulario").addEventListener("submit", function(e) {
             mensagem: mensagem
         })
     })
-    .then(function(resposta){
-        return resposta.json();
-    })
-    .then(function(dados){
-        alert(dados.mensagem);
+    .then(res => res.json())
+    .then(data => {
+        alert(data.mensagem);
         document.getElementById("formulario").reset();
     })
-    .catch(function(erro){
-        alert("Erro ao enviar os dados.");
-        console.log(erro);
+    .catch(error => {
+        console.error(error);
+        alert("Erro ao enviar dados");
     });
-});
-
-
-// TEMA CLARO / ESCURO
-document.getElementById("tema").addEventListener("click", function() {
-    document.body.classList.toggle("dark");
 });
